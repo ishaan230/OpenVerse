@@ -1,2 +1,1 @@
-# OpenVerse
-Blogging website in Flask
+# Authenticated_Dashboard using Flask

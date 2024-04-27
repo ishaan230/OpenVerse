@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Varela&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .flex {
+        display: flex;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      section {
+        background-color: #404041;
+
+        background-position: center;
+        background-size: 100% 100%;
+        color: white;
+        font-family: serif;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .sec2 {
+        background-color: #a29991;
+
+        background-position: center;
+        background-size: 100% 100%;
+        color: white;
+        font-family: serif;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .container5 {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .slideshow-container {
+        width: 100%;
+        height: 300px;
+        margin-right: 10px;
+        overflow: hidden;
+      }
+
+      .slideshow-image {
+        display: none;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      #urlbut {
+        background-color: white;
+        color: #404041;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 1em;
+      }
+
+      .pl {
+        line-height: 1.5;
+        margin-right: 200px;
+        font-size: 15px;
+      }
+
+      .top {
+        width: 100%;
+        height: 75px;
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        font-family: "Ubuntu", sans-serif;
+        background-color: black;
+      }
+      .topLeft {
+        flex: 2;
+        padding-top: 15px;
+        padding-left: 30px;
+        font-size: 20px;
+      }
+      .topRight {
+        padding-top: 15px;
+        flex: 3;
+        padding-right: 70px;
+      }
+      .topCenter {
+        flex: 8;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #57606f;
+      }
+
+      /* header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            font-size: 2em;
+        } */
+
+      section {
+        display: flex;
+        justify-content: space-around;
+        padding: 2em;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1.5em;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin: 0 1em;
+      }
+
+      h2 {
+        padding-bottom: 0.5em;
+        margin-bottom: 1em;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 1em;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .buttonn {
+        background-color: white;
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 13px;
+        margin-left: 70%;
+        height: 50px;
+        width: 100px;
+      }
+      .ca-container {
+        display: flex;
+        align-items: center;
+      }
+      .cal-container {
+        flex: 1;
+        height: 100%;
+        padding-left: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: start;
+      }
+      .car-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .ca-text {
+        font-weight: bold;
+        font-size: 25px;
+        /* font-family: 'Times New Roman', Times, serif; */
+        font-family: Arial, sans-serif;
+      }
+      .dcolor {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+      }
+      .menu-item {
+        padding: 10px;
+      }
+      .sub-drop-item {
+        display: none;
+      }
+      .menu-item:hover {
+        background-color: #404041;
+      }
+      .menu-item:hover .sub-drop-item {
+        display: block;
+        position: absolute;
+        background-color: black;
+        margin-top: 15px;
+        margin-left: -15px;
+      }
+      .menu-item:hover .sub-drop-item ul {
+        display: block;
+        margin: 10px;
+      }
+      .menu-item:hover .sub-drop-item ul li {
+        width: 150px;
+        padding: 10px;
+        color: white;
+        border-bottom: 1px dotted #fff;
+        background: transparent;
+        border-radius: 0px;
+        text-align: left;
+      }
+      .menu-item:hover .sub-drop-item ul li:last-child {
+        border-bottom: none;
+      }
+      .menu-item:hover .sub-drop-item ul li a:hover {
+        color: #8c8c8f;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1em;
+        /* position: fixed; */
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <!-- <header class="top">
+      <p class="topLeft">OPENVERSE</p>
+      <div class="topCenter">
+        <div style="display: flex">
+          <select onchange="window.location.href=this.value" style="border: none; background-color: black; margin: 0px 20px; font-size: 15px; color: white;">
+                    <option value="Dashboard">DASHBOARD</option>
+                    <option value="/home"><a href="/home">HOME</a></option>
+                </select>
+          <div class="menu-item">
+            <a
+              href="/welcome"
+              style="
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: lighter;
+                color: white;
+              "
+            >
+              <div style="display: flex; align-items: center">
+                <div style="margin-right: 5px">DASHBOARD</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  fill="currentColor"
+                  class="bi bi-caret-down-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+                  />
+                </svg>
+              </div>
+            </a>
+            <div class="sub-drop-item">
+              <ul>
+                <li><a href="/home" class="dcolor">HOME</a></li>
+              </ul>
+            </div>
+          </div> -->
+          <!-- <select onchange="window.location.href=this.value" style="background-color: black; border: none; margin: 0px 20px; font-size: 15px; color: white;">
+                    <option disabled selected>MANAGE</option>
+                    <option value="/view"><a href="/view">VIEW BLOGS</a></option>
+                    <option value="/delete_one"><a href="/delete_one">DELETE BLOGS</a></option>
+                    <option value="/delete_all"><a href="/delete_all">DELETE ALL</a></option>
+                </select> -->
+          <!-- <div class="menu-item">
+            <a
+              style="
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: lighter;
+              "
+              ><div style="display: flex; align-items: center"> -->
+                <!-- <div style="margin-right: 5px">MANAGE</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  fill="currentColor"
+                  class="bi bi-caret-down-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+                  />
+                </svg></div
+            ></a> -->
+            <!-- <div class="sub-drop-item">
+                    <ul>
+                      <li><a href="/view" class="dcolor">VIEW BLOGS</a></li>
+                      <li><a href="/delete_one" class="dcolor">DELETE BLOGS</a></li>
+                      <li><a href="/delete_all" class="dcolor">DELETE ALL</a></li>
+                    </ul>
+                    
+                  </div> -->
+            <!-- Example single danger button -->
+            <!-- <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-danger dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Action
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="topRight">
+        <h2 id="username"><i>{{ username }}</i></h2> -->
+        <!-- <button class="buttonn"><a href="/logout">LOGOUT</a></button>
+      </p>
+    </header> -->
+    <header class="p-3 text-bg-dark">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3 mx-3">
+            <p>OPENVERSE</p>
+          </a>
+  
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <div class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dashboard
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/home">Home</a></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Manage
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/view">View Blogs</a></li>
+                <li><a class="dropdown-item" href="/delete_one">Delete Blogs</a></li>
+                <li><a class="dropdown-item" href="/delete_all">Delete All</a></li>
+              </ul>
+            </div>
+          </ul>
+  
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2"><a href="/logout" style="color: white;">LOGOUT</a></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div>
+        <h1 style="margin-left: 50px">
+          <b style="font-size: 50px">Create a blog.</b>
+          <p class="pl">
+            <b
+              >Share your story with the world. Stand out with a
+              professionally-designed blog website that can be customized to fit
+              your brand. Build, manage, and promote your blog with Open Verse’s
+              built-in suite of design and marketing tools.</b
+            >
+          </p>
+          <button id="urlbut">
+            <a href="/blog">GET STARTED</a>
+          </button>
+        </h1>
+      </div>
+
+      <div class="slideshow-container">
+        <img class="slideshow-image" src="../static/1 (1).jpeg" alt="Image 1" />
+        <img class="slideshow-image" src="../static/2 (2).jpeg" alt="Image 2" />
+        <img class="slideshow-image" src="../static/3 (3).jpeg" alt="Image 3" />
+      </div>
+    </section>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div
+            style="width: 100%; height: 100vh; background-color: #8c8c8f"
+            class="ca-container"
+          >
+            <div class="cal-container">
+              <div>
+                <p style="color: white" class="ca-text">
+                  “A blog connects you in a personal <br />way with your clients
+                  and online <br />visitors.”
+                </p>
+              </div>
+              <div>
+                <p style="color: white; font-size: 20px" class="ca-text">
+                  MOISÉS HERNÁNDEZ, DESIGNER
+                </p>
+              </div>
+            </div>
+            <div class="car-container">
+              <img
+                src="https://media-www.sqspcdn.com/images/pages/tour/blogs/customer-quotes/moises/site-1500w.jpg"
+                height="800"
+                width="550"
+                style="object-fit: contain"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div
+            style="width: 100%; height: 100vh; background-color: #7a4438"
+            class="ca-container"
+          >
+            <div class="cal-container">
+              <div>
+                <p style="color: white" class="ca-text">
+                  “I use Squarespace for my <br />magazine and photography<br />
+                  website because it is beautiful,<br />
+                  easy to use, and versatile.”
+                </p>
+              </div>
+              <div>
+                <p style="color: white; font-size: 20px" class="ca-text">
+                  ERIKA ASTRID, FOUNDER
+                </p>
+              </div>
+            </div>
+            <div class="car-container">
+              <img
+                src="https://media-www.sqspcdn.com/images/pages/tour/blogs/customer-quotes/erika/site-1500w.jpg"
+                height="800"
+                width="550"
+                style="object-fit: contain"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div
+            style="width: 100%; height: 100vh; background-color: #b59c81"
+            class="ca-container"
+          >
+            <div class="cal-container">
+              <div>
+                <p style="color: white" class="ca-text">
+                  “Squarespace’s analytics, SEO <br />tools, and social media
+                  integrations <br />have helped us grow from a blog<br />
+                  with a small following to a growing<br />
+                  global audience.”
+                </p>
+              </div>
+              <div>
+                <p style="color: white; font-size: 20px" class="ca-text">
+                  AMYANN CADWELL, CO-FOUNDER & CEO
+                </p>
+              </div>
+            </div>
+
+            <div class="car-container">
+              <div>
+                <img
+                  src="	https://media-www.sqspcdn.com/images/pages/tour/blogs/customer-quotes/good-trade/site-1500w.jpg"
+                  height="800"
+                  width="550"
+                  style="object-fit: contain"
+                />
+              </div>
+              <hr />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+    </div>
+    <section class="sec2">
+      <div class="cons">
+        <div class="container5" style="margin-bottom: 30px">
+          <h1
+            class="hh"
+            style="
+              margin-left: 90px;
+              margin-right: 20px;
+              font-size: 30px;
+              font-family: Arial, sans-serif;
+              padding-top: 20px;
+            "
+          >
+            How to create a Blog
+          </h1>
+          <button
+            class="bttt"
+            style="
+              text-decoration: underline;
+              background-color: transparent;
+              border: none;
+              margin-left: 125px;
+              margin-top: -100px;
+            "
+          >
+            <b
+              ><a style="color: white" href="/blog"
+                >GET STARTED
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  /></svg></a
+            ></b>
+          </button>
+          <ol
+            class="olr"
+            style="
+              list-style-type: none;
+              margin-left: 600px;
+              margin-top: -113px;
+              margin-right: -600px;
+              font-size: 15px;
+              font-family: Arial, sans-serif;
+            "
+          >
+            <b>
+              <li class="lir">
+                01. &nbsp;&nbsp;&nbsp;Click on GET STARTED to make your blog.
+              </li>
+              <li class="lir" style="margin-top: 15px">
+                02. &nbsp;&nbsp;&nbsp;Add a blog on the template provided by us.
+              </li>
+              <li class="lir" style="margin-top: 15px">
+                03.&nbsp; &nbsp;&nbsp;Publish the content on website to
+                interact.
+              </li>
+
+              <li class="lir" style="margin-top: 15px">
+                04.&nbsp; &nbsp;&nbsp;Enjoy watching your as well as your
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;friend's
+                content.
+              </li></b
+            >
+          </ol>
+        </div>
+      </div>
+    </section>
+    <footer style="background-color: #111111b0; height: 90px">
+      <div
+        class="flex justify-center"
+        style="padding-top: 15px; padding-bottom: 10px"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-facebook"
+          viewBox="0 0 16 16"
+          style="color: #ffffff; margin-right: 20px"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-instagram"
+          viewBox="0 0 16 16"
+          style="color: white; margin-right: 20px"
+        >
+          <path
+            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-twitter"
+          viewBox="0 0 16 16"
+          style="color: white"
+        >
+          <path
+            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+          />
+        </svg>
+      </div>
+      <p class="uppercase text-center" style="color: white">
+        © 2024 OpenVerse - Website designed by TEAM OpenVerse
+      </p>
+    </footer>
+
+    <script>
+      var slideIndex = 0;
+      carousel();
+
+      function carousel() {
+        var i;
+        var slides = document.getElementsByClassName("slideshow-image");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000);
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

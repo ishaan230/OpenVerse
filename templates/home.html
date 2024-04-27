@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centered Cards</title>
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+<style>
+/* CSS styles for navigation bar */
+.top{
+            width: 100%;
+            height: 75px;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 15px;
+            font-family: "Ubuntu", sans-serif;
+            background-color: black;
+        }
+        .topLeft{
+            flex: 2;
+            padding-top: 15px;
+            padding-left: 30px;
+            font-size: 20px;
+        }
+        .topRight{
+            padding-top: 15px;
+            flex: 3;
+            padding-right: 70px;
+        }
+        .topCenter{
+            flex: 8;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .buttonn {
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            margin-left: 70%;
+            height: 50px;
+            width: 100px;
+        }
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* CSS styles for footer */
+.footer {
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.container {
+
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to next row */
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; /* Display cards in rows */
+  max-width: 1100px; /* Set maximum width for the container */
+  margin: 0 auto; /* Center the container */
+}
+
+.card {
+
+  background-color: #e3dcdc;
+  color: black;
+  width: calc(25.33% - 20px); /* Set width for each card, considering margin */
+  margin: 20px; /* Add margin between cards */
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Add cursor pointer for interaction */
+}
+
+.card-content {
+  max-height: 100px; /* Set max height to show short content */
+  overflow: hidden; /* Hide overflow content */
+  transition: max-height 0.3s ease; /* Smooth transition for expansion */
+}
+
+.expanded {
+  max-height: none; /* Expand content when card is clicked */
+}
+</style>
+</head>
+<body style="background-image: url('../static/bg.png'); background-repeat: no-repeat;  background-size: cover;margin: 0px;">
+
+{% if login == 1 %}
+<!-- <header class="top">
+  <p class="topLeft">OPENVERSE</p>
+  <div class="topCenter">
+      <div style="display: flex;">
+          <select onchange="window.location.href=this.value" style="border: none; background-color: black; margin: 0px 20px; font-size: 15px; color: white;">
+              <option disabled selected>select</option>
+              <option value="/welcome"><a href="/welcome">DASHBOARD</a></option>
+              <option value="/home"><a href="/home">HOME</a></option>
+          </select>
+          <select onchange="window.location.href=this.value" style="background-color: black; border: none; margin: 0px 20px; font-size: 15px; color: white;">
+              <option disabled selected>MANAGE</option>
+              <option value="/view"><a href="/view">VIEW BLOGS</a></option>
+              <option value="/delete_one"><a href="/delete_one">DELETE BLOGS</a></option>
+              <option value="/delete_all"><a href="/delete_all">DELETE ALL</a></option>
+          </select>
+      </div>
+  </div>
+  <p class="topRight">
+      <h2 id="username"><i>{{ username }}</i></h2> -->
+      <!-- <button class="buttonn"><a href="/logout">LOGOUT</a></button>
+  </p>
+</header> -->
+<header class="p-3 text-bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3 mx-3">
+        <p>OPENVERSE</p>
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <div class="dropdown">
+          <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Home
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/welcome">Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Manage
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/view">View Blogs</a></li>
+            <li><a class="dropdown-item" href="/delete_one">Delete Blogs</a></li>
+            <li><a class="dropdown-item" href="delete_all">Delete All</a></li>
+          </ul>
+        </div>
+      </ul>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2"><a href="/logout" style="color: white;">LOGOUT</a></button>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- <div class="navbar">
+  
+  <ul style="margin: 6px; text-align: center; padding: 0;">
+    <li style="display: inline-block;"><a href="/home">Home</a></li>
+    <li style="display: inline-block;"><a href="/welcome">Dashboard</a></li>
+  </ul>
+</div> -->
+{% else %}
+<div class="navbar">
+  <ul style="margin: 6px; text-align: center; padding: 0;">
+    <li style="display: inline-block;"><a href="/home">Home</a></li>
+    <li style="display: inline-block;"><a href="/login">Login</a></li>
+    <li style="display: inline-block;"><a href="/register">Register</a></li>
+  </ul>
+</div>
+
+{% endif %}
+</div>
+
+<!-- Content Section -->
+<h1 style="color: black; margin-left: 30px;font-family: Arial, Helvetica, sans-serif;">Latest Posts:</h1><br>
+<div class="container" onclick=expandContent()>
+  {% for item in data %}
+    <div class="card" onclick="expandContent(this)" style="overflow:visible;">
+      <img src="../{{item[3]}}" alt="Placeholder Image" style="width: 100%; height: auto;">
+      <div class="card-content">
+        <p><b>Author: </b><i>{{ item[0] }}</i></p> <!-- Username -->
+        <h4>{{ item[1] }}</h4> <!-- Title -->
+        <p>{{ item[2] }}</p>    <!-- Blog Content -->
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+<script>
+  function expandContent(card) {
+    card.querySelector('.card-content').classList.toggle('expanded');
+  }
+  function redirectNewpage() {
+    window.location.href = "http://127.0.0.1:5000/blogDetails"
+  }
+</script>
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

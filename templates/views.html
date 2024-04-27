@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Views</title>
+<style>
+  /* CSS styles for navigation bar */
+  .body{
+    margin: 0px;
+  }
+  .navbar {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* CSS styles for footer */
+  .footer {
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to next row */
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; /* Display cards in rows */
+    max-width: 1100px; /* Set maximum width for the container */
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .card {
+    width: calc(25.33% - 20px); /* Set width for each card, considering margin */
+    margin: 20px; /* Add margin between cards */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* Add cursor pointer for interaction */
+  }
+  
+  .card-content {
+    max-height: 90px; /* Set max height to show short content */
+    overflow: hidden; /* Hide overflow content */
+    transition: max-height 0.3s ease; /* Smooth transition for expansion */
+  }
+  
+  .expanded {
+    max-height: none; /* Expand content when card is clicked */
+  }
+  </style>
+  </head>
+  <body style="background-image: url('https://cdn.pixabay.com/photo/2018/04/03/23/24/composition-3288398_1280.jpg'); background-repeat: no-repeat;  background-size: cover;margin: 0px;">
+  
+    <div class="navbar">
+      <ul style="margin: 6px; text-align: center; padding: 0;">
+        <li style="display: inline-block;"><a href="/welcome">Home</a></li>
+        <li style="display: inline-block;"><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  
+<!-- Content Section -->
+<div class="container">
+  {% for item in data %}
+    <div class="card" onclick="expandContent(this)">
+      <form action="/update_post/{{ item[1] }}" method="POST">
+        <img src="../{{ item[3] }}" alt="Placeholder Image" style="width: 250px; height: 150px;">
+        <div class="card-content">
+          <p><b>Author: </b><i>{{ item[0] }}</i></p> <!-- Username -->
+          <h4>{{ item[1] }}</h4> <!-- Title -->
+          <input type="hidden" name="title" value="{{ item[1] }}"> <!-- Hidden input for title -->
+          <textarea name="content" style="display: block; width: 100%;" rows="4">{{ item[2] }}</textarea> <!-- Blog Content -->
+          <button type="submit" style="background-color: #333; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 5px;">Update</button>
+        </div>
+      </form>
+    </div>
+  {% endfor %}
+</div>
+
+  <div style="text-align: center;">
+    <button id="urlbut" style="background-color: #333; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 1em;">
+      <a href="/welcome" style="color: white; text-decoration: none;">Back</a>
+    </button>
+  </div>  
+  
+  <script>
+    function expandContent(card) {
+      card.querySelector('.card-content').classList.add('expanded');
+    }
+  
+    document.querySelectorAll('.card form').forEach(form => {
+      form.addEventListener('submit', function(event) {        
+        // Submit the form via AJAX
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            alert('Content updated successfully!');
+          } else {
+            alert('Failed to update content.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while updating content.');
+        });
+      });
+    });
+  </script>
+  
+  </body>
+
+</body>
+</html>
