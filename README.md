@@ -1,2 +1,2 @@
 # OpenVerse
-Blogging website in React
+Blogging website in Flask
