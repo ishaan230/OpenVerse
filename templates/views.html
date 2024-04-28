@@ -83,7 +83,7 @@
 <!-- Content Section -->
 <div class="container">
   {% for item in data %}
-    <div class="card" style="background-color:#8c8c8f" onclick="expandContent(this)">
+    <div class="card" style="background-color:#f0f0f0" onclick="expandContent(this)">
       <form action="/update_post/{{ item[1] }}" method="POST">
         <img src="../{{ item[3] }}" alt="Placeholder Image" style="width: 250px; height: 150px;">
         <div class="card-content">

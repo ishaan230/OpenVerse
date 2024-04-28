@@ -119,6 +119,10 @@
 .expanded {
   max-height: none; /* Expand content when card is clicked */
 }
+.ml{
+  margin-left: 600px;
+}
+
 </style>
 </head>
 <body style="background-color: #404041; background-repeat: no-repeat;  background-size: cover;margin: 0px;">
@@ -149,7 +153,7 @@
 <header class="p-3 text-bg-dark">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3 mx-3">
+      <a class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3 mx-3 mt-3">
         <p>OPENVERSE</p>
       </a>
 
@@ -174,7 +178,7 @@
         </div>
       </ul>
 
-      <div class="text-end">
+      <div class="text-end ml">
         <button type="button" class="btn btn-outline-light me-2"><a href="/logout" style="color: white;">LOGOUT</a></button>
       </div>
     </div>
@@ -203,7 +207,7 @@
 <h1 style="color:white; margin-left: 30px;font-family: Arial, Helvetica, sans-serif;">Latest Posts:</h1><br>
 <div class="container" onclick=expandContent()>
   {% for item in data %}
-    <div class="card" style="background-color:8c8c8f "onclick="expandContent(this)" style="overflow:visible;">
+    <div class="card" style="background-color:#f0f0f0 "onclick="expandContent(this)" style="overflow:visible;">
       <img src="../{{item[3]}}" alt="Placeholder Image" style="width: 100%; height: auto;">
       <div class="card-content">
         <p><b>Author: </b><i>{{ item[0] }}</i></p> <!-- Username -->
