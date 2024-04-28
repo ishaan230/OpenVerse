@@ -31,7 +31,7 @@
             font-weight: bold;
             color: black;
         }
-        input[type="text"] {
+        input[type="text"], input[type="file"], textarea {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
@@ -39,22 +39,12 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        input[type="text"]:focus {
+        input[type="text"]:focus, input[type="file"]:focus, textarea:focus {
             outline: none;
             border-color: dodgerblue;
         }
         textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
             resize: vertical;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: dodgerblue;
         }
         button {
             background-color: dodgerblue;
@@ -67,15 +57,19 @@
         button:hover {
             background-color: royalblue;
         }
+        #imagePreview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- <form method="POST" action="/form_submit"> -->
-        <form method="POST" action="/form_submit" enctype="multipart/form-data">
-
+    <form method="POST" action="/form_submit" enctype="multipart/form-data">
         <div>
             <label for="blogPic">Upload your pic here:</label>
-            <input type="file" name="blogPic" id="blogPic"><br><br>
+            <input type="file" name="blogPic" id="blogPic" accept="image/*" onchange="previewImage(event)"><br><br>
+            <img id="imagePreview" src="#" alt="Image Preview">
         </div>
         <div>
             <label for="title">Title:</label>
@@ -87,5 +81,19 @@
         </div>
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const preview = document.getElementById('imagePreview');
+                preview.src = reader.result;
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
 </body>
 </html>
