@@ -56,7 +56,7 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
     cursor: pointer; /* Add cursor pointer for interaction */
   }
   
@@ -71,7 +71,7 @@
   }
   </style>
   </head>
-  <body style="background-image: url('https://cdn.pixabay.com/photo/2018/04/03/23/24/composition-3288398_1280.jpg'); background-repeat: no-repeat;  background-size: cover;margin: 0px;">
+  <body style="background-color: #404041;; background-repeat: no-repeat;  background-size: cover;margin: 0px;">
   
     <div class="navbar">
       <ul style="margin: 6px; text-align: center; padding: 0;">
@@ -83,7 +83,7 @@
 <!-- Content Section -->
 <div class="container">
   {% for item in data %}
-    <div class="card" onclick="expandContent(this)">
+    <div class="card" style="background-color:#8c8c8f" onclick="expandContent(this)">
       <form action="/update_post/{{ item[1] }}" method="POST">
         <img src="../{{ item[3] }}" alt="Placeholder Image" style="width: 250px; height: 150px;">
         <div class="card-content">
