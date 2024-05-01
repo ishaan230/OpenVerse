@@ -128,28 +128,6 @@
 <body style="background-color: #404041; background-repeat: no-repeat;  background-size: cover;margin: 0px;">
 
 {% if login == 1 %}
-<!-- <header class="top">
-  <p class="topLeft">OPENVERSE</p>
-  <div class="topCenter">
-      <div style="display: flex;">
-          <select onchange="window.location.href=this.value" style="border: none; background-color: black; margin: 0px 20px; font-size: 15px; color: white;">
-              <option disabled selected>select</option>
-              <option value="/welcome"><a href="/welcome">DASHBOARD</a></option>
-              <option value="/home"><a href="/home">HOME</a></option>
-          </select>
-          <select onchange="window.location.href=this.value" style="background-color: black; border: none; margin: 0px 20px; font-size: 15px; color: white;">
-              <option disabled selected>MANAGE</option>
-              <option value="/view"><a href="/view">VIEW BLOGS</a></option>
-              <option value="/delete_one"><a href="/delete_one">DELETE BLOGS</a></option>
-              <option value="/delete_all"><a href="/delete_all">DELETE ALL</a></option>
-          </select>
-      </div>
-  </div>
-  <p class="topRight">
-      <h2 id="username"><i>{{ username }}</i></h2> -->
-      <!-- <button class="buttonn"><a href="/logout">LOGOUT</a></button>
-  </p>
-</header> -->
 <header class="p-3 text-bg-dark">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -177,10 +155,13 @@
           </ul>
         </div>
       </ul>
-
-      <div class="text-end ml">
-        <button type="button" class="btn btn-outline-light me-2"><a href="/logout" style="color: white;">LOGOUT</a></button>
-      </div>
+      <!-- Search Form -->
+      <form action="/search" method="GET" class="mt-3 mb-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search blogs..." name="query">
+          <button type="submit" class="btn btn-primary" style="background-color: #333; border: 0px;">Search</button>
+        </div>
+      </form>
     </div>
   </div>
 </header>

@@ -185,6 +185,27 @@ def update_post(titlle):
     print('Testing!!!!!!!#######################################################')
     return redirect('/view')
 
+@app.route('/search')
+def search():
+    login = 0
+    query = request.args.get('query')
+    searchResults = []
+    if query:
+        searchResults = blogg.find({
+            '$text': {'$search': query}
+        })
+    # Format search results
+    searchResultsFormatted = []
+    for result in searchResults:
+        username = result['userid']
+        title = result['title']
+        blog_content = result['blogContent']
+        pic = result['file_path']
+        searchResultsFormatted.append([username, title, blog_content, pic])
+    if 'username' in session:
+        login = 1
+
+    return render_template('home.html', data=searchResultsFormatted, query=query, login=login)
 
 if __name__ == '__main__':
     app.secret_key = 'your_secret_key'

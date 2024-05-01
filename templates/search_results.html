@@ -1,0 +1,18 @@
+<!-- search_results.html -->
+
+{% block content %}
+<h1>Search Results for "{{ query }}"</h1>
+
+<div class="container">
+  {% for result in results %}
+  <div class="card">
+    <img src="../{{ result[3] }}" alt="Placeholder Image" style="width: 100%; height: auto;">
+    <div class="card-content">
+      <p><b>Author: </b><i>{{ result[0] }}</i></p> <!-- Username -->
+      <h4>{{ result[1] }}</h4> <!-- Title -->
+      <p>{{ result[2] }}</p> <!-- Blog Content -->
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
