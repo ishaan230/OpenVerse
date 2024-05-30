@@ -38,7 +38,7 @@ def login():
         user = col.find_one({'username': username})
         if user and password==user['password']:
             session['username'] = username
-            return redirect(url_for('welcome'))
+            return render_template('welcome.html')
         else:
             return render_template('login.html', error='Invalid username or password')
     return render_template('login.html')
