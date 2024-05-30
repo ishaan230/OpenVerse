@@ -26,6 +26,8 @@ col = db.usrpass
 perdet = db.people
 blogg = db.blogDetails
 current_date = datetime.now().date()
+app.secret_key = 'lethisbeascretkeyforsureee'
+
 @app.route('/')
 def index():
     return redirect(url_for('login'))
@@ -216,5 +218,4 @@ def image_to_base64(file):
 
 
 if __name__ == '__main__':
-    app.secret_key = 'lethisbeascretkeyforsureee'
     app.run()
