@@ -85,7 +85,8 @@
   {% for item in data %}
     <div class="card" style="background-color:#f0f0f0" onclick="expandContent(this)">
       <form action="/update_post/{{ item[1] }}" method="POST">
-        <img src="../{{ item[3] }}" alt="Placeholder Image" style="width: 100%; height: auto;">
+        <img src="data:image/png;base64,{{ item[3] }}" alt="Placeholder Image" style="width: 100%; height: auto;">
+        
         <div class="card-content">
           <p><b>Author: </b><i>{{ item[0] }}</i></p> <!-- Username -->
           <h4>{{ item[1] }}</h4> <!-- Title -->

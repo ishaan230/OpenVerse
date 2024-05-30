@@ -1,22 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from pymongo import MongoClient
 import config
-import certifi
-import requests
 from requests import get
 from datetime import datetime
-import os
-
+from PIL import Image
+import base64
+import io
+import config
 
 
 app = Flask(__name__)
-app.config.from_object(config)
+# app.config.from_object(config)
+app.config.from_object(config.Config)
+
 
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #set up MongoDB
-client = MongoClient(config.MONGO_URI)
+# client = MongoClient(config.MONGO_URI)
+client = MongoClient(app.config['MONGO_URI'])
+
 db = client.gettingStarted
 col = db.usrpass
 perdet = db.people
@@ -107,28 +111,21 @@ def form_submission():
                 if file.filename == '':
                     return 'No selected file'
                 if file:
-                    # Save the file to the uploads folder
-                    filename = file.filename
-                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    file.save(file_path)
-                    print("File path: ",file_path)
-                    # # Save the file path to MongoDB along with other form data
-                    # client = MongoClient('mongodb://localhost:27017/')
-                    # db = client['your_database_name']
-                    # collection = db['your_collection_name']
-
+                    # Convert the image to a base64 string
+                    image_base64 = image_to_base64(file)
+                    
+                    # Save the image base64 string to MongoDB along with other form data
                     file_doc = {
                         'userid': username,
                         'title': blogTitle,
                         'blogContent': blogContent,
-                        'file_path': file_path
+                        'image_base64': image_base64
                     }
                     blogg.insert_one(file_doc)
                     return render_template('welcome.html')
         else:
             print("Not in if")
     return render_template('blog.html')
-
 
 @app.route('/home')
 def home():
@@ -139,8 +136,8 @@ def home():
         blog_content = document['blogContent']
         title = document['title']
         username = document['userid']
-        pic = document['file_path']
-        homeBlog += [[username,title,blog_content,pic]]
+        image_base64 = document.get('image_base64', None)
+        homeBlog += [[username,title,blog_content,image_base64]]
     # print(homeBlog)
     if 'username' in session:
         login = 1
@@ -151,14 +148,15 @@ def home():
 def view():
     if 'username' in session:
         username = session['username']
-        cursor = blogg.find({'userid': f'{username}'})
+        cursor = blogg.find({'userid': username})
         viewBlog = []
         for document in cursor:
             blog_content = document['blogContent']
             title = document['title']
-            pic = document['file_path']
-            viewBlog += [[username,title,blog_content,pic]]
-        return render_template('views.html',data = viewBlog)
+            image_base64 = document.get('image_base64', None)
+            viewBlog.append([username, title, blog_content, image_base64])
+        return render_template('views.html', data=viewBlog)
+    return render_template('login.html')
 
 @app.route('/delete_all')
 def deleteall():
@@ -206,6 +204,16 @@ def search():
         login = 1
 
     return render_template('home.html', data=searchResultsFormatted, query=query, login=login)
+
+def image_to_base64(file):
+    buffered = io.BytesIO()
+    img = Image.open(file)
+    img.save(buffered, format=img.format)
+    img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    return img_str
+
+
+
 
 if __name__ == '__main__':
     app.secret_key = 'your_secret_key'
