@@ -140,7 +140,7 @@ def home():
         username = document['userid']
         image_base64 = document.get('image_base64', None)
         homeBlog += [[username,title,blog_content,image_base64]]
-    # print(homeBlog)
+
     if 'username' in session:
         login = 1
     
