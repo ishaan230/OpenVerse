@@ -28,6 +28,21 @@ blogg = db.blogDetails
 current_date = datetime.now().date()
 app.secret_key = 'lethisbeascretkeyforsureee'
 
+
+
+
+def viewFunction():
+    if 'username' in session:
+        username = session['username']
+        cursor = blogg.find({'userid': username})
+        viewBlog = []
+        for document in cursor:
+            blog_content = document['blogContent']
+            title = document['title']
+            image_base64 = document.get('image_base64', None)
+            viewBlog.append([username, title, blog_content, image_base64])
+        return render_template('views.html', data=viewBlog)
+
 @app.route('/')
 def index():
     return redirect(url_for('login'))
@@ -183,7 +198,8 @@ def update_post(titlle):
     result = blogg.update_many({"title": titlle}, {"$set": {"blogContent": updated_content}})
     print(blogs)
     print('Testing!!!!!!!#######################################################')
-    return redirect('/view')
+    viewFunction()
+    return render_template('welcome.html')
 
 @app.route('/search')
 def search():
